@@ -8,7 +8,7 @@ public_users.post('/register', (req, res) => {
   const username = req.body.username
   const password = req.body.password
   if (username && password) {
-    if (!doesExist(username)) {
+    if (!isValid(username)) {
       users.push({ username: username, password: password })
       return res
         .status(200)
@@ -19,17 +19,6 @@ public_users.post('/register', (req, res) => {
   }
   return res.status(404).json({ message: 'Unable to register user.' })
 })
-
-const doesExist = (username) => {
-  let userswithsamename = users.filter((user) => {
-    return user.username === username
-  })
-  if (userswithsamename.length > 0) {
-    return true
-  } else {
-    return false
-  }
-}
 
 // Get the book list available in the shop
 public_users.get('/', function (req, res) {
