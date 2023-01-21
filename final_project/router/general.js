@@ -114,7 +114,7 @@ public_users.get('/author/:author', async function (req, res) {
 //   res.send(newBooksArray)
 // })
 
-const findTifle = async (title) => {
+const findTitle = async (title) => {
   try {
     const newBooksArray = []
     if (title) {
@@ -134,8 +134,7 @@ const findTifle = async (title) => {
 
 public_users.get('/title/:title', async function (req, res) {
   const title = req.params.title
-  const data = await findTifle(title)
-
+  const data = await findTitle(title)
   res.send(data)
 })
 
